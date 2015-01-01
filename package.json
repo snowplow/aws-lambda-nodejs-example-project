@@ -1,0 +1,27 @@
+{
+  "name": "aws-lambda-example-project",
+  "version": "0.1.0",
+  "description": "Example AWS Lambda application for processing a Kinesis stream of events",
+  "private": "true",
+  "dependencies": {
+    "thrift": "0.9.2",
+    "sendgrid": "1.4.0"
+  },
+  "devDependencies": {
+    "grunt": "0.4.*",
+    "grunt-aws-lambda": "0.3.0",
+    "aws-sdk": "2.0.23",
+    "sendgrid-stub": "0.0.3"
+  },
+  "bundledDependencies": [
+    "thrift",
+    "sendgrid"
+  ],
+  "author": "Alexander Dean <support@snowplowanalytics.com>",
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+}
