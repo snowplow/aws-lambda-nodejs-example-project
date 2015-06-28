@@ -1,5 +1,6 @@
 To get started:
 vagrant ssh
 cd /vagrant
+npm install grunt
 npm install
-grunt xxx
+grunt

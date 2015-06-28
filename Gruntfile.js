@@ -1,20 +1,54 @@
 var grunt = require('grunt');
-grunt.loadNpmTasks('grunt-aws-lambda');
+var async = require('async'); 
 
 grunt.initConfig({
-    lambda_invoke: {
+    dynamo: {
         default: {
+            function: 'dynamo'
         }
     },
-    lambda_deploy: {
+    createRole: {
         default: {
-            function: 'aws-lambda-example-project'
+            function: 'createRole'
         }
     },
-    lambda_package: {
+    kinesis: {
         default: {
+            function: 'kinesis'
+        }
+    },
+    attachRole: {
+        default: {
+            function: 'attachRole'
+        }
+    },
+    packaging: {
+        default: {
+            function: 'packaging'
+        }
+    },
+    deployLambda: {
+        default: {
+            function: 'deployLambda'
+        }
+    },
+    associateStream: {
+        default: {
+            function: 'associateStream'
+        }
+    },
+    generateEvents: {
+        default: {
+            function: 'generateEvents'
         }
     }
 });
 
-grunt.registerTask('deploy', ['lambda_package', 'lambda_deploy']);
+grunt.loadTasks('tasks');
+grunt.registerTask('default', ['dynamo','createRole','kinesis']);
+grunt.registerTask('role', ['attachRole','packaging']);
+grunt.registerTask('deploy', ['deployLambda']);
+grunt.registerTask('connect', ['associateStream']);
+grunt.registerTask('events', ['generateEvents']);
+
+

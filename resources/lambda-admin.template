@@ -1,0 +1,82 @@
+{
+"AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "LambdaExecRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [{
+            "Effect": "Allow",
+            "Principal": {
+              "Service": [
+                "lambda.amazonaws.com"
+              ]
+            },
+            "Action": "sts:AssumeRole"
+          }]
+        },
+        "Policies": [{
+          "PolicyName": "LambdaExecute",
+          "PolicyDocument": {
+            "Statement": [{
+              "Effect": "Allow",
+              "Action": [
+                "logs:*"
+              ],
+              "Resource": [
+                "arn:aws:logs:*:*:*"
+              ]
+            }]
+          }
+        }]
+      }
+    },
+
+    "LambdaInvokeRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [{
+            "Effect": "Allow",
+            "Principal": {
+              "Service": [
+                "lambda.amazonaws.com"
+              ]
+            },
+            "Action": "sts:AssumeRole"
+          }]
+        },
+        "Policies": [{
+          "PolicyName": "LambdaInvoke",
+          "PolicyDocument": {
+            "Statement": [{
+              "Effect": "Allow",
+              "Action": [
+                "lambda:InvokeFunction",
+                "kinesis:GetRecords",
+                "kinesis:GetShardIterator",
+                "kinesis:DescribeStream",
+                "kinesis:ListStreams"
+              ],
+              "Resource": [
+                "*"
+              ]
+            }]
+          }
+        }]
+      }
+    }
+  },
+
+  "Outputs" : {
+    "ExecutionRole" : {
+      "Description" : "An IAM role that Lambda can assume 'adminuser' to access your AWS resources.",
+      "Value" : { "Fn::GetAtt" : ["LambdaExecRole", "Arn"] }
+    },
+
+    "PushInvocationRole" : {
+      "Description" : "An IAM role that Amazon S3 can assume 'adminuser' to invoke your Lambda function.",
+      "Value" : { "Fn::GetAtt" : ["LambdaInvokeRole", "Arn"] }
+    }
+  }
+}
