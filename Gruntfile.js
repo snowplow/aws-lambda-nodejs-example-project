@@ -45,7 +45,7 @@ grunt.initConfig({
 });
 
 grunt.loadTasks('tasks');
-grunt.registerTask('default', ['dynamo','createRole','kinesis']);
+grunt.registerTask('init', ['dynamo','createRole','kinesis']);
 grunt.registerTask('role', ['attachRole','packaging']);
 grunt.registerTask('deploy', ['deployLambda']);
 grunt.registerTask('connect', ['associateStream']);

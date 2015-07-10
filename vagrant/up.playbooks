@@ -1,5 +1,3 @@
 oss-playbooks/nodejs.yml
-oss-playbooks/grunt.yml
 oss-playbooks/aws-cli-and-psql.yml
-oss-playbooks/invoke.yml
-oss-playbooks/jq.yml
+oss-playbooks/grunt.yml

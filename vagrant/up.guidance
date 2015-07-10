@@ -3,4 +3,4 @@ vagrant ssh
 cd /vagrant
 npm install grunt
 npm install
-grunt
+grunt --help
