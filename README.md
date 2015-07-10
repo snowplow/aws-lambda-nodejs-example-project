@@ -209,7 +209,7 @@ limitations under the License.
 [vagrant-install]: http://docs.vagrantup.com/v2/installation/index.html
 [virtualbox-install]: https://www.virtualbox.org/wiki/Downloads
 
-[blog-post]: http://snowplowanalytics.com/blog/2015/07/10/aws-lambda-nodejs-example-project-0.1.0-released/
+[blog-post]: http://snowplowanalytics.com/blog/2015/07/11/aws-lambda-nodejs-example-project-0.1.0-released/
 [020-milestone]: https://github.com/snowplow/aws-lambda-nodejs-example-project/milestones/Version%200.2.0
 [dynamodb-table-image]: /docs/dynamodb-table-image.png?raw=true
 

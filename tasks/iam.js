@@ -37,7 +37,18 @@ module.exports = function (grunt) {
                 if (err) { 
                     console.log(err, err.stack); 
                 } else { 
-                    opts.params.RoleName = data.Roles[0].RoleName;
+                    opts.params['arnRoles'] = data.Roles;
+                    for (var i = 0; i < opts.params.arnRoles.length; i++) {
+                        //opts.params.RoleName = data.Roles[0].RoleName;
+                        var lambdaRole = data.Roles[i].RoleName;
+                        if (lambdaRole.indexOf("LambdaExecRole") > 0) {
+                            opts.params.RoleName = data.Roles[i].RoleName;
+                            console.log("Found");
+                            console.log(opts.params.RoleName);
+                        } else {
+                            console.log("Looking for ... kinesisDynamo-LambdaExecRole");
+                        }
+                    }
                 callback(err);
                 }
             });

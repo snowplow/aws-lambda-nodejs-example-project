@@ -1,3 +1,16 @@
+/*
+ * Copyright (c) 2015 Snowplow Analytics Ltd. All rights reserved.
+ *
+ * This program is licensed to you under the Apache License Version 2.0,
+ * and you may not use this file except in compliance with the Apache License Version 2.0.
+ * You may obtain a copy of the Apache License Version 2.0 at http://www.apache.org/licenses/LICENSE-2.0.
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the Apache License Version 2.0 is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Apache License Version 2.0 for the specific language governing permissions and limitations there under.
+ */
+
 console.log('Loading ProcessKinesisRecordsDynamoDB function');
 
 var aws = require('aws-sdk');
@@ -33,8 +46,8 @@ exports.kinesisHandler = function(records, context) {
         });
     });
 
-
     ///////////////////////////////helper functions ////////////////////////////////
+
     // update item to DynamoDB
     function updateDynamoDB (params, callback) {
         table.updateItem(params, function (err, data) {
@@ -43,7 +56,6 @@ exports.kinesisHandler = function(records, context) {
             callback();
         });
     }
-
 
     // creating records objects to sort
     function aggregateData(payload) {
@@ -78,7 +90,6 @@ exports.kinesisHandler = function(records, context) {
         return params;
     }
 
-
     // manual check of UTC build zero adder
     function pad(number) {
         var r = String(number);
@@ -87,7 +98,6 @@ exports.kinesisHandler = function(records, context) {
         }
         return r;
     }
-
 
     // downsample function for creating metadata
     function downsample(dateObject) {
@@ -101,7 +111,6 @@ exports.kinesisHandler = function(records, context) {
     context.done();
 };
 
-
 // main function
 exports.handler = function(event, context) {
     var record = event.Records[0];
@@ -109,5 +118,3 @@ exports.handler = function(event, context) {
         exports.kinesisHandler(event.Records, context);
     }
 };
-
-
